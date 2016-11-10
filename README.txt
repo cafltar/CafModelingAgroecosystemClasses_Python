@@ -1,4 +1,4 @@
-Supporting scripts to generate and analyze Agroecosystem Class raster layers from Cropland Data Layers
+Supporting scripts to generate and analyze Agroecosystem Class raster layers that are generated from Cropland Data Layers
 
 ScriptAutomaticAec - Generates AECs from Cropland Data Layers
 
