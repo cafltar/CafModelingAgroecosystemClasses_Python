@@ -1,0 +1,1 @@
+Con((("Working\prism_utm800"<311) & (("AgIrrigated\CDL_2015_AgIrrigated"+"AgIrrigated\CDL_2014_AgIrrigated"+"AgIrrigated\CDL_2013_AgIrrigated"+"AgIrrigated\CDL_2012_AgIrrigated"+"AgIrrigated\CDL_2011_AgIrrigated"+"AgIrrigated\CDL_2010_AgIrrigated"+"AgIrrigated\CDL_2009_AgIrrigated"+"AgIrrigated\CDL_2008_AgIrrigated"+"AgIrrigated\CDL_2007_AgIrrigated")>=6)),14)

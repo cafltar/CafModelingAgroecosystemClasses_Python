@@ -1,0 +1,99 @@
+Value,Name,Category
+1,Corn,Irrigated
+4,Sorghum,Irrigated
+5,Soybeans,Irrigated
+6,Sunflower,Ag
+10,Peanuts,Irrigated
+11,Tobacco,Irrigated
+12,Sweet Corn,Irrigated
+13,Pop or Orn Corn,Irrigated
+14,Mint,Irrigated
+21,Barley,Ag
+22,Durum Wheat,Ag
+23,Spring Wheat,Ag
+24,Winter Wheat,Ag
+25,Other Small Grains,Ag
+27,Rye,Ag
+28,Oats,Ag
+29,Millet,Ag
+30,Speltz,Ag
+31,Canola,Ag
+32,Flaxseed,Ag
+33,Safflower,Ag
+34,Rape Seed,Ag
+35,Mustard,Ag
+36,Alfalfa,Ag
+37,Other Hay/Non Alfalfa,Ag
+38,Camelina,Ag
+39,Buckwheat,Ag
+41,Sugarbeets,Irrigated
+42,Dry Beans,Ag
+43,Potatoes,Irrigated
+44,Other Crops,Ag
+45,Sugarcane,Irrigated
+46,Sweet Potatoes,Irrigated
+47,Misc Vegs & Fruits,Irrigated
+48,Watermelons,Irrigated
+49,Onions,Irrigated
+50,Cucumbers,Irrigated
+51,Chick Peas,Ag
+52,Lentils,Ag
+53,Peas,Ag
+54,Tomatoes,Irrigated
+55,Caneberries,Orchard
+56,Hops,Irrigated
+57,Herbs,Irrigated
+58,Clover/Wildflowers,Ag
+59,Sod/Grass Seed,Ag
+60,Switchgrass,Irrigated
+61,Fallow/Idle Cropland,Ag
+63,Forest,Forest
+66,Cherries,Orchard
+67,Peaches,Orchard
+68,Apples,Orchard
+69,Grapes,Orchard
+70,Christmas Trees,Orchard
+71,Other Tree Crops,Orchard
+76,Walnuts,Orchard
+77,Pears,Orchard
+87,Wetlands,Wetland
+111,Open Water,Water
+112,Perennial Ice/Snow,Wilderness
+121,Developed/Open Space,Urban
+122,Developed/Low Intensity,Urban
+123,Developed/Med Intensity,Urban
+124,Developed/High Intensity,Urban
+131,Barren,Barren
+141,Deciduous Forest,Forest
+142,Evergreen Forest,Forest
+143,Mixed Forest,Forest
+152,Shrubland,Range
+176,Grass/Pasture,Range
+190,Woody Wetlands,Wetland
+195,Herbaceous Wetlands,Wetland
+205,Triticale,Ag
+206,Carrots,Irrigated
+207,Asparagus,Irrigated
+208,Garlic,Irrigated
+209,Cantaloupes,Irrigated
+210,Prunes,Orchard
+216,Peppers,Irrigated
+218,Nectarines,Orchard
+219,Greens,Irrigated
+220,Plums,Orchard
+221,Strawberries,Irrigated
+222,Squash,Irrigated
+223,Apricots,Orchard
+224,Vetch,Irrigated
+225,Dbl Crop WinWht/Corn,Irrigated
+226,Dbl Crop Oats/Corn,Irrigated
+227,Lettuce,Irrigated
+229,Pumpkins,Irrigated
+236,Dbl Crop WinWht/Sorghum,Irrigated
+237,Dbl Crop Barley/Corn,Irrigated
+242,Blueberries,Orchard
+243,Cabbage,Irrigated
+246,Radishes,Irrigated
+247,Turnips,Irrigated
+249,Gourds,Irrigated
+250,Cranberries,Orchard

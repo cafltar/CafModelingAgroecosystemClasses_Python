@@ -1,0 +1,20 @@
+==== Irrigated ====
+Con((rasterIn == 1) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 229) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 243) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 249),14)
+==== Ag ====
+Con((rasterIn == 6) | (rasterIn == 21) | (rasterIn == 22) | (rasterIn == 23) | (rasterIn == 24) | (rasterIn == 25) | (rasterIn == 27) | (rasterIn == 28) | (rasterIn == 29) | (rasterIn == 30) | (rasterIn == 31) | (rasterIn == 32) | (rasterIn == 33) | (rasterIn == 34) | (rasterIn == 35) | (rasterIn == 36) | (rasterIn == 37) | (rasterIn == 38) | (rasterIn == 39) | (rasterIn == 42) | (rasterIn == 44) | (rasterIn == 51) | (rasterIn == 52) | (rasterIn == 53) | (rasterIn == 58) | (rasterIn == 59) | (rasterIn == 61) | (rasterIn == 205),99)
+==== Orchard ====
+Con((rasterIn == 55) | (rasterIn == 66) | (rasterIn == 67) | (rasterIn == 68) | (rasterIn == 69) | (rasterIn == 70) | (rasterIn == 71) | (rasterIn == 76) | (rasterIn == 77) | (rasterIn == 210) | (rasterIn == 218) | (rasterIn == 220) | (rasterIn == 223) | (rasterIn == 242) | (rasterIn == 250),15)
+==== Forest ====
+Con((rasterIn == 63) | (rasterIn == 141) | (rasterIn == 142) | (rasterIn == 143),4)
+==== Wetland ====
+Con((rasterIn == 87) | (rasterIn == 190) | (rasterIn == 195),6)
+==== Water ====
+Con((rasterIn == 111),5)
+==== Wilderness ====
+Con((rasterIn == 112),9)
+==== Urban ====
+Con((rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
+==== Barren ====
+Con((rasterIn == 131),7)
+==== Range ====
+Con((rasterIn == 152) | (rasterIn == 176),3)
