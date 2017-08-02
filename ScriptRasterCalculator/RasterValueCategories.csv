@@ -77,6 +77,7 @@ Value,Name,Category
 208,Garlic,Irrigated
 209,Cantaloupes,Irrigated
 210,Prunes,Orchard
+214,Broccoli,Irrigated
 216,Peppers,Irrigated
 218,Nectarines,Orchard
 219,Greens,Irrigated
@@ -93,6 +94,7 @@ Value,Name,Category
 237,Dbl Crop Barley/Corn,Irrigated
 242,Blueberries,Orchard
 243,Cabbage,Irrigated
+244,Cauliflower,Irrigated
 246,Radishes,Irrigated
 247,Turnips,Irrigated
 249,Gourds,Irrigated
