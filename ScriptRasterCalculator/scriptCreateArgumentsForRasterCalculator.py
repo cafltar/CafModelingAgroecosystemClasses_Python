@@ -89,7 +89,7 @@ layerBaseName = "rasterIn"
 layerNamePrecipitationData = "Working\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
 layerNameAgIrrigatedSuffix = "_AgIrrigated"
-layerCurrentYear = 2015
+layerCurrentYear = 2016
 #layerFileExtension = ".tif"
 layerFileExtension = ""
 
@@ -102,6 +102,7 @@ proportionCroppedCutoff = 6/9
 PIXEL_VALUE_FALLOW = 61
 
 historicYears = [
+    2016,
     2015,
     2014,
     2013,
