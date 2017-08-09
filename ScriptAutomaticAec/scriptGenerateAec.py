@@ -8,16 +8,16 @@ import glob
 
 # --- PARAMS AND SETUP ---------------------------------------------------------
 # Parameters
-_irrigatedPath = "Working" + os.path.sep + "CDL_2015_Irrigated_AlgorithmicIrrigated.tif"
+_irrigatedPath = "Working" + os.path.sep + "CDL_2016_Irrigated_AlgorithmicIrrigated.tif"
 _workingDirName = "WorkingTemp"
 _resultDirName = "Results"
 tempFolderName = "temp"
-shouldSaveIntermediateLayers = False
+shouldSaveIntermediateLayers = True
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\Files\Ars\Projects\AgroecosystemClasses\GIS"
+arcpy.env.workspace = r"C:\Drive\Files\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
 arcpy.env.overwriteOutput = True
-arcpy.env.snapRaster = arcpy.env.workspace + os.path.sep + irrigatedPath
+arcpy.env.snapRaster = arcpy.env.workspace + os.path.sep + _irrigatedPath
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
@@ -25,6 +25,7 @@ arcpy.env.scratchWorkspace = tempFolder
 
 _coordinateSystem = arcpy.SpatialReference("WGS 1984 UTM Zone 11N")
 years = [
+    2016,
     2015,
     2014,
     2013,
@@ -41,7 +42,7 @@ years = [
 # The following get<Category>() functions return a ESRI map algebra expression which is generated from another script found in ScriptRasterCalculator\scriptCreateArgumentsForRasterCalculator
 
 def getIrrigated(rasterIn):
-    return Con((rasterIn == 1) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 229) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 243) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 249),14)
+    return Con((rasterIn == 1) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 214) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 229) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 243) | (rasterIn == 244) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 249),14)
 
 def getAg(rasterIn):
     return Con((rasterIn == 6) | (rasterIn == 21) | (rasterIn == 22) | (rasterIn == 23) | (rasterIn == 24) | (rasterIn == 25) | (rasterIn == 27) | (rasterIn == 28) | (rasterIn == 29) | (rasterIn == 30) | (rasterIn == 31) | (rasterIn == 32) | (rasterIn == 33) | (rasterIn == 34) | (rasterIn == 35) | (rasterIn == 36) | (rasterIn == 37) | (rasterIn == 38) | (rasterIn == 39) | (rasterIn == 42) | (rasterIn == 44) | (rasterIn == 51) | (rasterIn == 52) | (rasterIn == 53) | (rasterIn == 58) | (rasterIn == 59) | (rasterIn == 61) | (rasterIn == 205),99)

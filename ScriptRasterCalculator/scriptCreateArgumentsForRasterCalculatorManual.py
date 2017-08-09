@@ -5,37 +5,6 @@ import sys
 import math
 
 # --- FUNCTIONS ----------------------------------------------------------------
-
-# Purpose: Outputs an argument string for the Raster Calculator in ArcMap that 
-#   extracts pixels of a certain value - filters pixels that belong to a certain 
-#   category
-# df = Pandas dataframe, with headers = Value, Name, Category
-# category = "Irrigated, Ag, Forest, etc"
-# rasterValue = The raster value to give the extracted pixels
-# gisDataLayerName = The name of the datalayer in ArcMap
-#TODO Update documentation for revision
-#def XgetRasterCalcArgument(df, category, rasterValue, 
-#                          gisDataLayerName = "Working\\CDL_2015.tif"):
-#    
-#    data = df.loc[df['Category'] == str(category)]
-#
-#    result = "---- " + str(category) + " ----\n"
-#
-#    result += "Con("
-#
-#    count = len(data.index)
-#
-#    for i in range(0, count):
-#        result += "(\"" + gisDataLayerName + "\" == "
-#        result += str(data.iloc[i]['Value'])
-#        result += ")"
-#        if i < count - 1:
-#            result += " | "
-#
-#    result += ", " + str(rasterValue) + ")\n"
-#    
-#    return result
-
 def getRasterCalcArgument(df, categories, rasterValue,
                           gisDataLayerName, valuesToExclude = None,
                           shoulSetNoDataToZero = False):
@@ -59,8 +28,7 @@ def getRasterCalcArgument(df, categories, rasterValue,
     count = len(data.index)
 
     for i in range(0, count):
-        #result += "(\"" + gisDataLayerName + "\" == " ##remove quotes for creating map algebra statement for scriptGenerateAec.py
-        result += "(" + gisDataLayerName + " == "
+        result += "(\"" + gisDataLayerName + "\" == "
         result += str(data.iloc[i]['Value'])
         result += ")"
         if i < count - 1:
@@ -84,22 +52,12 @@ inFile  = "RasterValueCategories.csv"
 outFile = "RasterCalculatorArgs" + outFileExtension
 outFileHistoricBaseName = "RasterCalculatorHistoric" 
 outFileAlgorithmicIrrigationLayer = "RasterCalculatorAlgorithmicIrr" + outFileExtension
-#layerBaseName = "Working\\CDL_"
-layerBaseName = "rasterIn"
+layerBaseName = "Working\\CDL_"
 layerNamePrecipitationData = "Working\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
 layerNameAgIrrigatedSuffix = "_AgIrrigated"
 layerCurrentYear = 2016
-#layerFileExtension = ".tif"
-layerFileExtension = ""
-
-pixelValueAgIrrigatedLayer = 1
-pricipitationCutOff = 311
-pixelValueAlgorithmicIrrLayer = 1
-proportionCroppedCutoff = 6/9
-
-# Constants
-PIXEL_VALUE_FALLOW = 61
+layerFileExtension = ".tif"
 
 historicYears = [
     2016,
@@ -112,7 +70,13 @@ historicYears = [
     2009,
     2008,
     2007]
+pixelValueAgIrrigatedLayer = 1
+pricipitationCutOff = 311
+pixelValueAlgorithmicIrrLayer = 1
+proportionCroppedCutoff = 7/float(len(historicYears))
 
+# Constants
+PIXEL_VALUE_FALLOW = 61
 # Associate category with raster Value
 mapCategoryToRasterValue = {
     "Urban"         : 1,
@@ -147,8 +111,7 @@ with open(outFile, 'a') as oFile:
             getRasterCalcArgument(df, 
                                   [cat], 
                                   mapCategoryToRasterValue[cat], 
-                                  #layerBaseName + str(layerCurrentYear) + ## remove year from name for scriptGenerateAec.py
-                                  layerBaseName + 
+                                  layerBaseName + str(layerCurrentYear) +
                                                   layerFileExtension))
 
 

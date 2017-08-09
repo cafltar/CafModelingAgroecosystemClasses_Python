@@ -6,14 +6,14 @@ Con((rasterIn == 6) | (rasterIn == 21) | (rasterIn == 22) | (rasterIn == 23) | (
 Con((rasterIn == 55) | (rasterIn == 66) | (rasterIn == 67) | (rasterIn == 68) | (rasterIn == 69) | (rasterIn == 70) | (rasterIn == 71) | (rasterIn == 76) | (rasterIn == 77) | (rasterIn == 210) | (rasterIn == 218) | (rasterIn == 220) | (rasterIn == 223) | (rasterIn == 242) | (rasterIn == 250),15)
 ==== Forest ====
 Con((rasterIn == 63) | (rasterIn == 141) | (rasterIn == 142) | (rasterIn == 143),4)
+==== Urban ====
+Con((rasterIn == 82) | (rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
 ==== Wetland ====
 Con((rasterIn == 87) | (rasterIn == 190) | (rasterIn == 195),6)
 ==== Water ====
 Con((rasterIn == 111),5)
 ==== Wilderness ====
 Con((rasterIn == 112),9)
-==== Urban ====
-Con((rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
 ==== Barren ====
 Con((rasterIn == 131),7)
 ==== Range ====
