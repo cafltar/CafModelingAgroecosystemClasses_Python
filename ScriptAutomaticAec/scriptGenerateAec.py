@@ -60,13 +60,16 @@ def getWater(rasterIn):
     return Con((rasterIn == 111),5)
 
 def getUrban(rasterIn):
-    return Con((rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
+    return Con((rasterIn == 82) | (rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
 
 def getBarren(rasterIn):
     return Con((rasterIn == 131),7)
 
 def getRange(rasterIn):
     return Con((rasterIn == 152) | (rasterIn == 176),3)
+
+def getWilderness(rasterIn):
+    return Con((rasterIn == 112), 9)
 
 def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coordinateSystem):
     print("Starting year: "+str(currYear))
@@ -76,14 +79,15 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
 
     # Create category layers
     print("... Generating layer categories")
-    rasterOrchard=  getOrchard(rasterCdl)
-    rasterForest=   getForest(rasterCdl)
-    rasterWetland=  getWetland(rasterCdl)
-    rasterWater=    getWater(rasterCdl)
-    rasterUrban=    getUrban(rasterCdl)
-    rasterBarren=   getBarren(rasterCdl)
-    rasterRange=    getRange(rasterCdl)
-    rasterAg=getAg(rasterCdl)    
+    rasterOrchard=      getOrchard(rasterCdl)
+    rasterForest=       getForest(rasterCdl)
+    rasterWetland=      getWetland(rasterCdl)
+    rasterWater=        getWater(rasterCdl)
+    rasterUrban=        getUrban(rasterCdl)
+    rasterBarren=       getBarren(rasterCdl)
+    rasterRange=        getRange(rasterCdl)
+    rasterAg=           getAg(rasterCdl) 
+    rasterWilderness=   getWilderness(rasterCdl)   
 
     # Create AgNoIrrigated layer
     print("... Generating AgNoIrrigated layer")
@@ -110,7 +114,7 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
 
     # Combine all layers
     print("... Generating mosaic")
-    arcpy.MosaicToNewRaster_management([rasterIrrMaster,rasterAnnual,rasterTransition,rasterGrainFallow,rasterOrchard,rasterForest,rasterWetland,rasterWater,rasterUrban,rasterBarren,rasterRange],
+    arcpy.MosaicToNewRaster_management([rasterIrrMaster,rasterAnnual,rasterTransition,rasterGrainFallow,rasterOrchard,rasterForest,rasterWetland,rasterWater,rasterUrban,rasterBarren,rasterRange,rasterWilderness],
     resultDirName,"anthrome"+str(currYear)+"n.tif",coordinateSystem,"8_BIT_UNSIGNED",30,1,"FIRST","FIRST")
 
 
@@ -124,6 +128,7 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
         rasterUrban     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Urban.tif")
         rasterBarren    .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Barren.tif")
         rasterRange     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Range.tif")
+        rasterWilderness.save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Wilderness.tif")
 
         rasterAgNoIrrigated .save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_AgNoIrrigated.tif")
         rasterDryland       .save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_Dryland.tif")
