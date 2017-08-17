@@ -114,7 +114,7 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
 
     # Combine all layers
     print("... Generating mosaic")
-    arcpy.MosaicToNewRaster_management([rasterIrrMaster,rasterAnnual,rasterTransition,rasterGrainFallow,rasterOrchard,rasterForest,rasterWetland,rasterWater,rasterUrban,rasterBarren,rasterRange,rasterWilderness],
+    arcpy.MosaicToNewRaster_management([rasterIrrMaster,rasterAnnual,rasterTransition,rasterGrainFallow,rasterOrchard,rasterForest,rasterWetland,rasterWater,rasterUrban,rasterBarren,rasterRange],
     resultDirName,"anthrome"+str(currYear)+"n.tif",coordinateSystem,"8_BIT_UNSIGNED",30,1,"FIRST","FIRST")
 
 
