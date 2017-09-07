@@ -177,7 +177,7 @@ def createAnthromeMap(dirPathToAnthromeMaps, outputDirWorking, outputDirPathResu
     varietyPath = os.path.join(outputDirWorking, "varietyRaster.tif")
 
     # Get cutoff value, should be greater than 50%
-    dynamicUnstableCuttoff = len(anthromePaths)/2
+    dynamicUnstableCuttoff = int((len(andersonMapPaths)/2) + 0.5)
 
     # Not using the {where_clause} sets NoData to 0, no idea why
     #stableRaster = Con((Raster(varietyPath) == 1), Raster(majorityPath))
@@ -186,8 +186,8 @@ def createAnthromeMap(dirPathToAnthromeMaps, outputDirWorking, outputDirPathResu
 
     print("... generating stable, dynamic, and unstable rasters")
     stableRaster = Con(varietyPath, majorityPath, "", "Value = 1")
-    dynamicRaster = Con(varietyPath, Raster(majorityPath) + 100, "", "Value > 1 AND Value < " + str(dynamicUnstableCuttoff))
-    unstableRaster = Con(varietyPath, Raster(majorityPath) + 200, "", "Value >= " + str(dynamicUnstableCuttoff))
+    dynamicRaster = Con(varietyPath, Raster(majorityPath) + 100, "", "Value > 1 AND Value <= " + str(dynamicUnstableCuttoff))
+    unstableRaster = Con(varietyPath, Raster(majorityPath) + 200, "", "Value > " + str(dynamicUnstableCuttoff))
 
     stableRaster.save(os.path.join(outputDirPathResult, "anthromeStable.tif"))
     dynamicRaster.save(os.path.join(outputDirPathResult, "anthromeDynamic.tif"))
