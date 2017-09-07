@@ -1,20 +1,20 @@
 ==== Irrigated ====
-Con((rasterIn == 1) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 214) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 229) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 243) | (rasterIn == 244) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 249),14)
+Con(("Working\CDL_2016.tif" == 1) | ("Working\CDL_2016.tif" == 4) | ("Working\CDL_2016.tif" == 5) | ("Working\CDL_2016.tif" == 10) | ("Working\CDL_2016.tif" == 11) | ("Working\CDL_2016.tif" == 12) | ("Working\CDL_2016.tif" == 13) | ("Working\CDL_2016.tif" == 14) | ("Working\CDL_2016.tif" == 41) | ("Working\CDL_2016.tif" == 43) | ("Working\CDL_2016.tif" == 45) | ("Working\CDL_2016.tif" == 46) | ("Working\CDL_2016.tif" == 47) | ("Working\CDL_2016.tif" == 48) | ("Working\CDL_2016.tif" == 49) | ("Working\CDL_2016.tif" == 50) | ("Working\CDL_2016.tif" == 54) | ("Working\CDL_2016.tif" == 56) | ("Working\CDL_2016.tif" == 57) | ("Working\CDL_2016.tif" == 60) | ("Working\CDL_2016.tif" == 206) | ("Working\CDL_2016.tif" == 207) | ("Working\CDL_2016.tif" == 208) | ("Working\CDL_2016.tif" == 209) | ("Working\CDL_2016.tif" == 214) | ("Working\CDL_2016.tif" == 216) | ("Working\CDL_2016.tif" == 219) | ("Working\CDL_2016.tif" == 221) | ("Working\CDL_2016.tif" == 222) | ("Working\CDL_2016.tif" == 224) | ("Working\CDL_2016.tif" == 225) | ("Working\CDL_2016.tif" == 226) | ("Working\CDL_2016.tif" == 227) | ("Working\CDL_2016.tif" == 229) | ("Working\CDL_2016.tif" == 236) | ("Working\CDL_2016.tif" == 237) | ("Working\CDL_2016.tif" == 243) | ("Working\CDL_2016.tif" == 244) | ("Working\CDL_2016.tif" == 246) | ("Working\CDL_2016.tif" == 247) | ("Working\CDL_2016.tif" == 249),14)
 ==== Ag ====
-Con((rasterIn == 6) | (rasterIn == 21) | (rasterIn == 22) | (rasterIn == 23) | (rasterIn == 24) | (rasterIn == 25) | (rasterIn == 27) | (rasterIn == 28) | (rasterIn == 29) | (rasterIn == 30) | (rasterIn == 31) | (rasterIn == 32) | (rasterIn == 33) | (rasterIn == 34) | (rasterIn == 35) | (rasterIn == 36) | (rasterIn == 37) | (rasterIn == 38) | (rasterIn == 39) | (rasterIn == 42) | (rasterIn == 44) | (rasterIn == 51) | (rasterIn == 52) | (rasterIn == 53) | (rasterIn == 58) | (rasterIn == 59) | (rasterIn == 61) | (rasterIn == 205),99)
+Con(("Working\CDL_2016.tif" == 6) | ("Working\CDL_2016.tif" == 21) | ("Working\CDL_2016.tif" == 22) | ("Working\CDL_2016.tif" == 23) | ("Working\CDL_2016.tif" == 24) | ("Working\CDL_2016.tif" == 25) | ("Working\CDL_2016.tif" == 27) | ("Working\CDL_2016.tif" == 28) | ("Working\CDL_2016.tif" == 29) | ("Working\CDL_2016.tif" == 30) | ("Working\CDL_2016.tif" == 31) | ("Working\CDL_2016.tif" == 32) | ("Working\CDL_2016.tif" == 33) | ("Working\CDL_2016.tif" == 34) | ("Working\CDL_2016.tif" == 35) | ("Working\CDL_2016.tif" == 36) | ("Working\CDL_2016.tif" == 37) | ("Working\CDL_2016.tif" == 38) | ("Working\CDL_2016.tif" == 39) | ("Working\CDL_2016.tif" == 42) | ("Working\CDL_2016.tif" == 44) | ("Working\CDL_2016.tif" == 51) | ("Working\CDL_2016.tif" == 52) | ("Working\CDL_2016.tif" == 53) | ("Working\CDL_2016.tif" == 58) | ("Working\CDL_2016.tif" == 59) | ("Working\CDL_2016.tif" == 61) | ("Working\CDL_2016.tif" == 205),99)
 ==== Orchard ====
-Con((rasterIn == 55) | (rasterIn == 66) | (rasterIn == 67) | (rasterIn == 68) | (rasterIn == 69) | (rasterIn == 70) | (rasterIn == 71) | (rasterIn == 76) | (rasterIn == 77) | (rasterIn == 210) | (rasterIn == 218) | (rasterIn == 220) | (rasterIn == 223) | (rasterIn == 242) | (rasterIn == 250),15)
+Con(("Working\CDL_2016.tif" == 55) | ("Working\CDL_2016.tif" == 66) | ("Working\CDL_2016.tif" == 67) | ("Working\CDL_2016.tif" == 68) | ("Working\CDL_2016.tif" == 69) | ("Working\CDL_2016.tif" == 70) | ("Working\CDL_2016.tif" == 71) | ("Working\CDL_2016.tif" == 76) | ("Working\CDL_2016.tif" == 77) | ("Working\CDL_2016.tif" == 210) | ("Working\CDL_2016.tif" == 218) | ("Working\CDL_2016.tif" == 220) | ("Working\CDL_2016.tif" == 223) | ("Working\CDL_2016.tif" == 242) | ("Working\CDL_2016.tif" == 250),15)
 ==== Forest ====
-Con((rasterIn == 63) | (rasterIn == 141) | (rasterIn == 142) | (rasterIn == 143),4)
+Con(("Working\CDL_2016.tif" == 63) | ("Working\CDL_2016.tif" == 141) | ("Working\CDL_2016.tif" == 142) | ("Working\CDL_2016.tif" == 143),4)
 ==== Urban ====
-Con((rasterIn == 82) | (rasterIn == 121) | (rasterIn == 122) | (rasterIn == 123) | (rasterIn == 124),1)
+Con(("Working\CDL_2016.tif" == 82) | ("Working\CDL_2016.tif" == 121) | ("Working\CDL_2016.tif" == 122) | ("Working\CDL_2016.tif" == 123) | ("Working\CDL_2016.tif" == 124),1)
 ==== Wetland ====
-Con((rasterIn == 87) | (rasterIn == 190) | (rasterIn == 195),6)
+Con(("Working\CDL_2016.tif" == 87) | ("Working\CDL_2016.tif" == 190) | ("Working\CDL_2016.tif" == 195),6)
 ==== Water ====
-Con((rasterIn == 111),5)
+Con(("Working\CDL_2016.tif" == 111),5)
 ==== Wilderness ====
-Con((rasterIn == 112),9)
+Con(("Working\CDL_2016.tif" == 112),9)
 ==== Barren ====
-Con((rasterIn == 131),7)
+Con(("Working\CDL_2016.tif" == 131),7)
 ==== Range ====
-Con((rasterIn == 152) | (rasterIn == 176),3)
+Con(("Working\CDL_2016.tif" == 152) | ("Working\CDL_2016.tif" == 176),3)

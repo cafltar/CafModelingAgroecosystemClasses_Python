@@ -97,7 +97,7 @@ if os.path.isfile(outFile):
 
 # Read in map attributes
 try:
-    df = pd.read_csv("RasterValueCategories.csv")
+    df = pd.read_csv(inFile)
 except Exception as e:
     sys.stderr.write('ERROR: %sn' % str(e))
 
