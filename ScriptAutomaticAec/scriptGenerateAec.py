@@ -177,7 +177,7 @@ def createAnthromeMap(dirPathToAnthromeMaps, outputDirWorking, outputDirPathResu
     varietyPath = os.path.join(outputDirWorking, "varietyRaster.tif")
 
     # Get cutoff value, should be greater than 50%
-    dynamicUnstableCuttoff = int((len(andersonMapPaths)/2) + 0.5)
+    dynamicUnstableCuttoff = int((len(anthromePaths)/2) + 0.5)
 
     # Not using the {where_clause} sets NoData to 0, no idea why
     #stableRaster = Con((Raster(varietyPath) == 1), Raster(majorityPath))
@@ -218,7 +218,7 @@ arcpy.CheckOutExtension("spatial")
 #TODO: Function to create a new Irrigated layer, sets irrigatedPath
 
 # Uses static irrigation layer to create an Anthrome map for each year in years
-for year in years:
+#for year in years:
     try:
         createAecLayer(year, _irrigatedPath, _resultDirName, _workingDirName, _coordinateSystem)   
     except Exception as e:
