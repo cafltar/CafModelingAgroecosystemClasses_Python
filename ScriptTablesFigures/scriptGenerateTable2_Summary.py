@@ -13,7 +13,7 @@ dfs = []
 # Garbs = Chick Peas + Dry bean
 columnsToKeep = [   'Year', 'VALUE',        'VALUE_24',    'VALUE_23',     'VALUE_21', 'VALUE_52', 'VALUE_53', 'VALUE_51',     'VALUE_42',  'VALUE_31', 'VALUE_61', 'VALUE_36', 'VALUE_43', 'VALUE_1', 'AEC area']
 columnNames = [     'Year', 'AEC class',    'Winter Wheat', 'Spring Wheat', 'Barley',  'Lentils',  'Peas',     'Chick Peas',   'Dry Beans', 'Canola',   'Fallow',   'Alfalfa',  'Potatoes', 'Corn', 'AEC area']
-columnsNotAg = [ 'VALUE_63', 'VALUE_87', 'VALUE_111', 'VALUE_112', 'VALUE_121', 'VALUE_122', 'VALUE_123', 'VALUE_124', 'VALUE_131', 'VALUE_141', 'VALUE_142', 'VALUE_143', 'VALUE_152', 'VALUE_176', 'VALUE_190', 'VALUE_195']
+columnsNotAg = [ 'VALUE_63', 'VALUE_82', 'VALUE_87', 'VALUE_111', 'VALUE_112', 'VALUE_121', 'VALUE_122', 'VALUE_123', 'VALUE_124', 'VALUE_131', 'VALUE_141', 'VALUE_142', 'VALUE_143', 'VALUE_152', 'VALUE_176', 'VALUE_190', 'VALUE_195']
 
 # AEC values: annual (11), transition (12), grain-fallow (13), irrigated (14), orchard (15)
 rowsToKeep = [11,12,13,14,15]

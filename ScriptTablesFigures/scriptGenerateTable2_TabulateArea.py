@@ -11,7 +11,7 @@ resultDirName = "Results"
 tempFolderName = "temp"
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\Files\Ars\Projects\AgroecosystemClasses\GIS"
+arcpy.env.workspace = r"C:\Drive\Files\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
 arcpy.env.overwriteOutput = True
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
@@ -26,7 +26,8 @@ years = [
     2012,
     2013,
     2014,
-    2015]
+    2015,
+    2016]
 
 # from: https://geonet.esri.com/thread/110894
 def TableToCSV(fc,CSVFile):  
