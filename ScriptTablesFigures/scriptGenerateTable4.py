@@ -150,7 +150,7 @@ arcpy.CheckOutExtension("spatial")
 try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
-        os.path.join(arcpy.env.workspace, workingDirName, "Dzones.shp"), "Zone",
+        pathToDouglasZones, "Zone",
         #os.path.join(arcpy.env.workspace, resultDirName)
         os.path.join(resultDirName)
     )
@@ -162,7 +162,7 @@ print("Creating ecoregion cross tabulation...")
 try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
-        os.path.join(arcpy.env.workspace, workingDirName, "ecoregions.shp"), "L4_KEY",
+        pathToEcoregions, "L4_KEY",
         #os.path.join(arcpy.env.workspace, resultDirName)
         os.path.join(resultDirName)
     )
@@ -174,7 +174,7 @@ print("Creating MLRA cross tabulation...")
 try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
-        os.path.join(arcpy.env.workspace, workingDirName, "MLRAs.shp"), "MLRA_NAME",
+        pathToMLRAs, "MLRA_NAME",
         #os.path.join(arcpy.env.workspace, resultDirName)
         os.path.join(resultDirName)
     )
