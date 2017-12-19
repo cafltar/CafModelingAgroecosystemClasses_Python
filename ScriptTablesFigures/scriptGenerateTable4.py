@@ -10,17 +10,18 @@ workingTempDirName = "WorkingTemp"
 workingDirName = "Working"
 resultDirName = "Results"
 tempFolderName = "temp"
+inputFolderName = "Input"
 
-arcpy.env.workspace = r"C:\Files\Ars\Projects\AgroecosystemClasses\GIS"
+arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
 arcpy.env.overwriteOutput = True
 
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
 
-pathToDouglasZones = os.path.join(arcpy.env.workspace, workingDirName, "Dzones.shp")
-pathToEcoregions = os.path.join(arcpy.env.workspace, workingDirName, "ecoregions.shp") 
-pathToMLRAs = os.path.join(arcpy.env.workspace, workingDirName, "MLRAs.shp") 
+pathToDouglasZones = os.path.join(arcpy.env.workspace, inputFolderName, "Dzones.shp")
+pathToEcoregions = os.path.join(arcpy.env.workspace, inputFolderName, "ecoregions.shp") 
+pathToMLRAs = os.path.join(arcpy.env.workspace, inputFolderName, "MLRAs.shp") 
 
 # //- PARAMS AND SETUP ---------------------------------------------------------
 
@@ -150,7 +151,8 @@ try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
         os.path.join(arcpy.env.workspace, workingDirName, "Dzones.shp"), "Zone",
-        os.path.join(arcpy.env.workspace, resultDirName)
+        #os.path.join(arcpy.env.workspace, resultDirName)
+        os.path.join(resultDirName)
     )
 except Exception as e:
     print(str(e))
@@ -161,7 +163,8 @@ try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
         os.path.join(arcpy.env.workspace, workingDirName, "ecoregions.shp"), "L4_KEY",
-        os.path.join(arcpy.env.workspace, resultDirName)
+        #os.path.join(arcpy.env.workspace, resultDirName)
+        os.path.join(resultDirName)
     )
 except Exception as e:
     print(str(e))
@@ -172,7 +175,8 @@ try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),
         os.path.join(arcpy.env.workspace, workingDirName, "MLRAs.shp"), "MLRA_NAME",
-        os.path.join(arcpy.env.workspace, resultDirName)
+        #os.path.join(arcpy.env.workspace, resultDirName)
+        os.path.join(resultDirName)
     )
 except Exception as e:
     print(str(e))
