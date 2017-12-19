@@ -10,8 +10,9 @@ workingTempDirName = "WorkingTemp"
 workingDirName = "Working"
 resultDirName = "Results"
 tempFolderName = "temp"
+inputFolderName = "Input"
 
-arcpy.env.workspace = r"C:\Files\Ars\Projects\AgroecosystemClasses\GIS"
+arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
 arcpy.env.overwriteOutput = True
 
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
@@ -19,9 +20,9 @@ arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
 
 pathToMajorityAnthrome = os.path.join(arcpy.env.workspace, workingTempDirName, "majorityRaster.tif")
-pathToSoilsLayer = os.path.join(arcpy.env.workspace, workingDirName, "SoilOrders", "reacchs_utm")
-pathToAnnualPrecipLayer = os.path.join(arcpy.env.workspace, workingDirName, "prism_utm800") 
-pathToTemperatureLayer = os.path.join(arcpy.env.workspace, workingDirName, "temp_utm800") 
+pathToSoilsLayer = os.path.join(arcpy.env.workspace, inputFolderName, "SoilOrders", "reacchs_utm")
+pathToAnnualPrecipLayer = os.path.join(arcpy.env.workspace, inputFolderName, "prism_utm800") 
+pathToTemperatureLayer = os.path.join(arcpy.env.workspace, inputFolderName, "temp_utm800") 
 
 # //- PARAMS AND SETUP ---------------------------------------------------------
 
@@ -152,7 +153,8 @@ try:
     createCrossTabulatedData(
        pathToSoilsLayer, "SUBORDER",
        pathToMajorityAnthrome, "Value",
-       os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromeSoilTab.dbf"))
+       #os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromeSoilTab.dbf"))
+       os.path.join(resultDirName, "Table3_anthromeSoilTab.dbf"))
 except Exception as e:
     print(str(e))
 
@@ -162,7 +164,8 @@ try:
     createZonalStatisticsAsTable(
         pathToMajorityAnthrome, "Value",
         pathToTemperatureLayer,
-        os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromeTempStat.dbf"))
+        #os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromeTempStat.dbf"))
+        os.path.join(resultDirName, "Table3_anthromeTempStat.dbf"))
 
     #createCrossTabulatedData(
     #   pathToTemperatureLayer, "Value",
@@ -181,7 +184,8 @@ try:
     createZonalStatisticsAsTable(
         pathToMajorityAnthrome, "Value",
         pathToAnnualPrecipLayer,
-        os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromePrecipStat.dbf"))
+        #os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromePrecipStat.dbf"))
+        os.path.join(resultDirName, "Table3_anthromePrecipStat.dbf"))
 except Exception as e:
     print(str(e))
 
