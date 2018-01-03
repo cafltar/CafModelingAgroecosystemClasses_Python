@@ -70,26 +70,48 @@ def createAnthromeMap(
     anthromes = []
 
     for year in years:
-        # TODO: Combine Wetland, Water into "Water and Others" -- also look up if I need to include anythign else in "other"
-        # TODO: Combine Orchard, Irrigated, drylandAg layers into "Agriculture"
-
-        # Reclass AgNoIrrigated from VALUE = 1 to VALUE = 10
-        print("... processing dryland ag layer")
-        agNoIrrigated = Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+"_AgNoIrrigated.tif"))
-        drylandAg = Con((agNoIrrigated == 1), 10)
         
+        print("... processing ag layer")
+        
+        # Combine Ag layers and relcass
+        drylandAg = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+"_AgNoIrrigated.tif"))
+        irrigated = Raster(irrigatedPath)
+        orchard = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+ "_Orchard.tif"))
+        agriculture = SetNull(IsNull(drylandAg) & IsNull(irrigated) & IsNull(orchard),50)
+        agriculture.save(
+            os.path.join(
+                outputDirWorking, "agriculture_"+str(year)+".tif"))
+
+        print("... processing water and other layer")
+        # Combine layers into "Water and Others" and reclass
+        water = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+ "_Water.tif"))
+        wetland = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+ "_Wetland.tif"))  
+        barren = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+ "_Barren.tif"))
+        wilderness = Raster(os.path.join(
+            dirPathToAndersonLayers, "CDL_"+str(year)+ "_Wilderness.tif"))
+        #Con((rasterIn == 87) | (rasterIn == 190) | (rasterIn == 195),6)
+        #rasterDrylandFallow = Con((rasterDryland == 61),1,0)
+        #rasterAnnual = Con((rasterFocalStatistic <= 0.1)&(rasterAgNoIrrigated==1),11)
+        waterAndOther = SetNull(IsNull(water) & IsNull(wetland) & IsNull(barren) & IsNull(wilderness),51)
+        waterAndOther.save(
+            os.path.join(
+                outputDirWorking, "waterOther_"+str(year)+".tif"))
+
         print("... stitching year " + str(year))
         andersonLayers = [
-            Raster(irrigatedPath),
-            drylandAg,
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Orchard.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Forest.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Wetland.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Water.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Urban.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Barren.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Range.tif")),
-            Raster(os.path.join(dirPathToAndersonLayers, "CDL_"+str(year)+ "_Wilderness.tif"))
+            agriculture,
+            Raster(os.path.join(
+                dirPathToAndersonLayers, "CDL_"+str(year)+ "_Forest.tif")),
+            waterAndOther,
+            Raster(os.path.join(
+                dirPathToAndersonLayers, "CDL_"+str(year)+ "_Urban.tif")),
+            Raster(os.path.join(
+                dirPathToAndersonLayers, "CDL_"+str(year)+ "_Range.tif")),
         ]
 
         anthromes.append(
@@ -101,8 +123,10 @@ def createAnthromeMap(
         )
     
     print("Running cell statistics...")
-    majorityRasterTempPath = os.path.join(outputDirWorking, "anthromeMajorityRasterTemp.tif")
-    majorityPath = os.path.join(outputDirWorking, "anthromeMajorityRaster.tif")
+    majorityRasterTempPath = os.path.join(
+        outputDirWorking, "anthromeMajorityRasterTemp.tif")
+    majorityPath = os.path.join(
+        outputDirWorking, "anthromeMajorityRaster.tif")
     
     # Create MAJORITY Cell Statistic layer
     print("... calculating majorities")
@@ -111,10 +135,15 @@ def createAnthromeMap(
         "MAJORITY", "DATA")
     
     # Returns largest YYYY in list of anthromeYYYY.tif
-    anthromePathCurrYear = os.path.join(outputDirWorking, "anthrome" + str(sorted(years, reverse=True)[0]) + ".tif")
+    anthromePathCurrYear = os.path.join(
+        outputDirWorking, 
+        "anthrome" + str(sorted(years, reverse=True)[0]) + ".tif")
 
     # The MAJORITY function in Cell Statistics returns NoData if a tie for majority, so fill these with current year's value'
-    majorityRaster = Con(IsNull(majorityRasterTempPath), anthromePathCurrYear, majorityRasterTempPath)
+    majorityRaster = Con(
+        IsNull(majorityRasterTempPath), 
+        anthromePathCurrYear, 
+        majorityRasterTempPath)
     majorityRaster.save(majorityPath)
     
     print("... calculating varieties")
@@ -130,12 +159,20 @@ def createAnthromeMap(
 
     print("Generating stable, dynamic, and unstable rasters...")
     stableAnthromeRaster = Con(varietyPath, majorityPath, "", "Value = 1")
-    dynamicAnthromeRaster = Con(varietyPath, Raster(majorityPath) + 100, "", "Value > 1 AND Value <= " + str(dynamicUnstableCuttoff))
-    unstableAnthromeRaster = Con(varietyPath, Raster(majorityPath) + 200, "", "Value > " + str(dynamicUnstableCuttoff))
+    dynamicAnthromeRaster = Con(
+        varietyPath, 
+        Raster(majorityPath) + 100, 
+        "", "Value > 1 AND Value <= " + str(dynamicUnstableCuttoff))
+    unstableAnthromeRaster = Con(
+        varietyPath, 
+        Raster(majorityPath) + 200, "", "Value > " + str(dynamicUnstableCuttoff))
 
-    stableAnthromeRaster.save(os.path.join(outputDirPathResult, "anthromeStable.tif"))
-    dynamicAnthromeRaster.save(os.path.join(outputDirPathResult, "anthromeDynamic.tif"))
-    unstableAnthromeRaster.save(os.path.join(outputDirPathResult, "anthromeUnstable.tif"))
+    stableAnthromeRaster.save(
+        os.path.join(outputDirPathResult, "anthromeStable.tif"))
+    dynamicAnthromeRaster.save(
+        os.path.join(outputDirPathResult, "anthromeDynamic.tif"))
+    unstableAnthromeRaster.save(
+        os.path.join(outputDirPathResult, "anthromeUnstable.tif"))
 
     print("Compressing rasters...")
     arcpy.MosaicToNewRaster_management(
