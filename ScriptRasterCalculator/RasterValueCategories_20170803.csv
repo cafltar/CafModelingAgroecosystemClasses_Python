@@ -1,7 +1,5 @@
 Value,Name,Category
 1,Corn,Irrigated
-2,Cotton,Irrigated
-3,Rice,Irrigated
 4,Sorghum,Irrigated
 5,Soybeans,Irrigated
 6,Sunflower,Ag
@@ -15,7 +13,6 @@ Value,Name,Category
 23,Spring Wheat,Ag
 24,Winter Wheat,Ag
 25,Other Small Grains,Ag
-26,Dbl Crop WinWht/Soybeans,Irrigated
 27,Rye,Ag
 28,Oats,Ag
 29,Millet,Ag
@@ -50,29 +47,19 @@ Value,Name,Category
 59,Sod/Grass Seed,Ag
 60,Switchgrass,Irrigated
 61,Fallow/Idle Cropland,Ag
-62,Pasture/Grass,Range
 63,Forest,Forest
-64,Shrubland,Range
-65,Barren,Barren
 66,Cherries,Orchard
 67,Peaches,Orchard
 68,Apples,Orchard
 69,Grapes,Orchard
 70,Christmas Trees,Orchard
 71,Other Tree Crops,Orchard
-72,Citrus,Orchard
-74,Pecans,Orchard
-75,Almonds,Orchard
 76,Walnuts,Orchard
 77,Pears,Orchard
-81,Clouds/No Data,Barren
 82,Developed,Urban
-83,Water,Water
 87,Wetlands,Wetland
-88,Nonag/Undefined,Barren
-92,Aquaculture,Irrigated
 111,Open Water,Water
-112,Perennial Ice/Snow ,Wilderness
+112,Perennial Ice/Snow,Wilderness
 121,Developed/Open Space,Urban
 122,Developed/Low Intensity,Urban
 123,Developed/Med Intensity,Urban
@@ -82,22 +69,17 @@ Value,Name,Category
 142,Evergreen Forest,Forest
 143,Mixed Forest,Forest
 152,Shrubland,Range
-176,Grassland/Pasture,Range
+176,Grass/Pasture,Range
 190,Woody Wetlands,Wetland
 195,Herbaceous Wetlands,Wetland
-204,Pistachios,Orchard
 205,Triticale,Ag
 206,Carrots,Irrigated
 207,Asparagus,Irrigated
 208,Garlic,Irrigated
 209,Cantaloupes,Irrigated
 210,Prunes,Orchard
-211,Olives,Orchard
-212,Oranges,Orchard
-213,Honeydew Melons,Irrigated
 214,Broccoli,Irrigated
 216,Peppers,Irrigated
-217,Pomegranates,Orchard
 218,Nectarines,Orchard
 219,Greens,Irrigated
 220,Plums,Orchard
@@ -109,25 +91,12 @@ Value,Name,Category
 226,Dbl Crop Oats/Corn,Irrigated
 227,Lettuce,Irrigated
 229,Pumpkins,Irrigated
-230,Dbl Crop Lettuce/Durum Wht,Irrigated
-231,Dbl Crop Lettuce/Cantaloupe,Irrigated
-232,Dbl Crop Lettuce/Cotton,Irrigated
-233,Dbl Crop Lettuce/Barley,Irrigated
-234,Dbl Crop Durum Wht/Sorghum,Ag
-235,Dbl Crop Barley/Sorghum,Ag
 236,Dbl Crop WinWht/Sorghum,Irrigated
 237,Dbl Crop Barley/Corn,Irrigated
-238,Dbl Crop WinWht/Cotton,Irrigated
-239,Dbl Crop Soybeans/Cotton,Irrigated
-240,Dbl Crop Soybeans/Oats,Irrigated
-241,Dbl Crop Corn/Soybeans,Irrigated
 242,Blueberries,Orchard
 243,Cabbage,Irrigated
 244,Cauliflower,Irrigated
-245,Celery,Irrigated
 246,Radishes,Irrigated
 247,Turnips,Irrigated
-248,Eggplants,Irrigated
 249,Gourds,Irrigated
 250,Cranberries,Orchard
-254,Dbl Crop Barley/Soybeans,Irrigated
