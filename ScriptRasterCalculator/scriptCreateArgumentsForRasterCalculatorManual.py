@@ -47,19 +47,29 @@ def getRasterCalcArgument(df, categories, rasterValue,
 # --- MAIN ---------------------------------------------------------------------
 
 # Parameters
+# Extension for output files
 outFileExtension = ".txt"
-inFile  = "RasterValueCategories.csv"
-outFile = "RasterCalculatorArgs" + outFileExtension
-outFileHistoricBaseName = "RasterCalculatorHistoric" 
-outFileAlgorithmicIrrigationLayer = "RasterCalculatorAlgorithmicIrr" + outFileExtension
+# File to read pixel values, names, categories
+inFile  = "Input\\RasterValueCategories.csv"
+# Output file path where Raster Calculator arguments will be written (to be copy/pasted into ArcMap)
+outFile = "Output\\RasterCalculatorArgs" + outFileExtension
+# Output file path for writing Raster Calculator arguments to be copy/pasted into ArcMap
+outFileHistoricBaseName = "Output\\RasterCalculatorHistoric" 
+# Output file path for writing Raster Calculator arguments to be copy/pasted into ArcMap
+outFileAlgorithmicIrrigationLayer = "Output\\RasterCalculatorAlgorithmicIrr" + outFileExtension
+# Name and path of CDL layers in ArcMap - this will be used for Raster Calc
 layerBaseName = "Working\\CDL_"
-layerNamePrecipitationData = "Working\prism_utm800"
+# Group layer name and name of precip data in ArcMap - this will be used for Raster Calc
+layerNamePrecipitationData = "Input\\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
 layerNameAgIrrigatedSuffix = "_AgIrrigated"
-layerCurrentYear = 2016
+# Most recent year of CDL data to be analyzed
+layerCurrentYear = 2017
+# Extension for output from Raster Calculator
 layerFileExtension = ".tif"
 
 historicYears = [
+    2017,
     2016,
     2015,
     2014,
