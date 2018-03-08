@@ -47,19 +47,29 @@ def getRasterCalcArgument(df, categories, rasterValue,
 # --- MAIN ---------------------------------------------------------------------
 
 # Parameters
+# Extension for output files
 outFileExtension = ".txt"
-inFile  = "RasterValueCategories.csv"
-outFile = "RasterCalculatorArgs" + outFileExtension
-outFileHistoricBaseName = "RasterCalculatorHistoric" 
-outFileAlgorithmicIrrigationLayer = "RasterCalculatorAlgorithmicIrr" + outFileExtension
+# File to read pixel values, names, categories
+inFile  = "Input\\RasterValueCategories.csv"
+# Output file path where Raster Calculator arguments will be written (to be copy/pasted into ArcMap)
+outFile = "Output\\RasterCalculatorArgsAecScript" + outFileExtension
+# Output file path for writing Raster Calculator arguments to be copy/pasted into ArcMap
+outFileHistoricBaseName = "Output\\RasterCalculatorHistoric" 
+# Output file path for writing Raster Calculator arguments to be copy/pasted into ArcMap
+outFileAlgorithmicIrrigationLayer = "Output\\RasterCalculatorAlgorithmicIrr" + outFileExtension
+# Name and path of CDL layers in ArcMap - this will be used for Raster Calc
 layerBaseName = "rasterIn"
-layerNamePrecipitationData = "Working\prism_utm800"
+# Group layer name and name of precip data in ArcMap - this will be used for Raster Calc
+layerNamePrecipitationData = "Input\\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
 layerNameAgIrrigatedSuffix = "_AgIrrigated"
-layerCurrentYear = 2016
+# Most recent year of CDL data to be analyzed, this is used to generate RasterCalculatorArgs.txt
+layerCurrentYear = 2017
+# Extension for output from Raster Calculator
 layerFileExtension = ""
 
 historicYears = [
+    2017,
     2016,
     2015,
     2014,
@@ -73,7 +83,7 @@ historicYears = [
 pixelValueAgIrrigatedLayer = 1
 pricipitationCutOff = 311
 pixelValueAlgorithmicIrrLayer = 1
-proportionCroppedCutoff = 8/float(len(historicYears))
+proportionCroppedCutoff = 0.7
 
 # Constants
 PIXEL_VALUE_FALLOW = 61
@@ -100,7 +110,7 @@ if os.path.isfile(outFile):
 
 # Read in map attributes
 try:
-    df = pd.read_csv("RasterValueCategories.csv")
+    df = pd.read_csv(inFile)
 except Exception as e:
     sys.stderr.write('ERROR: %sn' % str(e))
 
@@ -114,54 +124,4 @@ with open(outFile, 'a') as oFile:
             getRasterCalcArgument(df, 
                                   [cat], 
                                   mapCategoryToRasterValue[cat], 
-                                  layerBaseName + 
-                                                  layerFileExtension))
-
-
-# Write arugment strings to ouput file to generate agricultural + irrig layers
-#for year in historicYears:
-#    outFileName = outFileHistoricBaseName + str(year) + outFileExtension
-#    layerName = layerBaseName + str(year) + layerFileExtension
-#
-#    # delete file if exists
-#    if os.path.isfile(outFileName):
-#        os.remove(outFileName)
-#
-#    #write files
-#    categoriesToWrite = ["Irrigated", "Ag"]
-#
-#    with open(outFileName, 'a') as oFile:
-#        oFile.write(
-#            getRasterCalcArgument(df, 
-#                                  categoriesToWrite, 
-#                                  pixelValueAgIrrigatedLayer, 
-#                                  layerName, 
-#                                  [PIXEL_VALUE_FALLOW],
-#                                  True)
-#        )
-
-# Write argument string to ouptu file to generate algorithmic irrigation layer
-# delete file if exists
-#if os.path.isfile(outFileAlgorithmicIrrigationLayer):
-#    os.remove(outFileAlgorithmicIrrigationLayer)
-
-# Create and write output
-#with open(outFileAlgorithmicIrrigationLayer, 'a') as oFile:
-#    resultString = ("Con(((\"" + layerNamePrecipitationData + 
-#                    "\"<" + str(pricipitationCutOff) + 
-#                    ") & ((")
-#
-#    for i in range(0, len(historicYears)):
-#        layerName = (layerNameAgIrrigatedBaseName + 
-#                    str(historicYears[i]) + 
-#                    layerNameAgIrrigatedSuffix + 
-#                    layerFileExtension)
-#        resultString += "\"" + layerName + "\""
-#
-#        if i != len(historicYears) - 1:
-#            resultString += "+"
-#    
-#    resultString += ")>=" + str(math.ceil(len(historicYears) * proportionCroppedCutoff)) + ")),14)"
-#    oFile.write(
-#        resultString
-#    )
+                                  layerBaseName))
