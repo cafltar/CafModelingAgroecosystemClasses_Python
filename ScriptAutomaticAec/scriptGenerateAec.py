@@ -220,11 +220,11 @@ arcpy.CheckOutExtension("spatial")
 #TODO: Function to create a new Irrigated layer, sets irrigatedPath
 
 # Uses static irrigation layer to create an AEC map for each year in years
-#for year in years:
-#    try:
-#        createAecLayer(year, _irrigatedPath, _resultDirName, _workingDirName, _coordinateSystem)   
-#    except Exception as e:
-#        print(e)
+for year in years:
+    try:
+        createAecLayer(year, _irrigatedPath, _resultDirName, _workingDirName, _coordinateSystem)   
+    except Exception as e:
+        print(e)
 
 # Finds all anthrome maps in Results directory and creates aggregate Anthrome
 try:
