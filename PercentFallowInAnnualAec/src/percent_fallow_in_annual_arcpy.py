@@ -46,7 +46,7 @@ def get_fallow_in_annual_pixels(fallow_in_annual_path):
 
     return fallow_in_annual_pixels
 
-def calculate_follow_in_annual(annual_raster_path, fallow_in_annual_path):
+def calculate_percent_follow_in_annual(annual_raster_path, fallow_in_annual_path):
     """Takes string path to fallow in annual raster (produced by create_fallow_in_annual_raster) and string path to annual raster (produced by create_annual_raster) and calculates percent fallow pixels within annual pixels
     """
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
             str(write_path_fallow_in_annual_raster))
 
         # Calculate percent fallow pixels within annual pixels
-        percent_fallow_in_annual = calculate_follow_in_annual(
+        percent_fallow_in_annual = calculate_percent_follow_in_annual(
             str(write_path_annual_raster), 
             str(write_path_fallow_in_annual_raster))
 
