@@ -4,4 +4,6 @@
 *.dbf
 working
 output
+results
+input
 .vscode
