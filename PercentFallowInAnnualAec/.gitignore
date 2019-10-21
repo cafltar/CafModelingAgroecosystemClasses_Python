@@ -5,5 +5,5 @@
 working
 output
 results
-input
+input/cdl/*.tif
 .vscode

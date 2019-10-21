@@ -9,3 +9,4 @@
 * [cdl](cdl)
   * From Bryan's Google My Drive: Projects\CafModelingAgroecologicalClasses\2018\Working\ArcGIS\Input\CroplandDataLayer
   * These are the same Cropland Data Layer files used to generate the above aec's
+  * Note that this folder is not included in repo as it has files larger than 100 MB (which Github does not support)
