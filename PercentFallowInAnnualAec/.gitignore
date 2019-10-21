@@ -1,0 +1,7 @@
+*.tfw
+*.xml
+*.cpg
+*.dbf
+working
+output
+.vscode
