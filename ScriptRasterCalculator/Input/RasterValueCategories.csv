@@ -96,6 +96,7 @@ Value,Name,Category
 212,Oranges,Orchard
 213,Honeydew Melons,Irrigated
 214,Broccoli,Irrigated
+215,Avocados,Irrigated
 216,Peppers,Irrigated
 217,Pomegranates,Orchard
 218,Nectarines,Orchard
@@ -108,6 +109,7 @@ Value,Name,Category
 225,Dbl Crop WinWht/Corn,Irrigated
 226,Dbl Crop Oats/Corn,Irrigated
 227,Lettuce,Irrigated
+228,Dbl Crop Triticale/Corn,Irrigated
 229,Pumpkins,Irrigated
 230,Dbl Crop Lettuce/Durum Wht,Irrigated
 231,Dbl Crop Lettuce/Cantaloupe,Irrigated
