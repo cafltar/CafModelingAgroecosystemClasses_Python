@@ -58,7 +58,7 @@ outFileHistoricBaseName = "Output\\RasterCalculatorHistoric"
 # Output file path for writing Raster Calculator arguments to be copy/pasted into ArcMap
 outFileAlgorithmicIrrigationLayer = "Output\\RasterCalculatorAlgorithmicIrr" + outFileExtension
 # Name and path of CDL layers in ArcMap - this will be used for Raster Calc
-layerBaseName = "Working\\CDL_"
+layerBaseName = "CDL\\CDL_"
 # Group layer name and name of precip data in ArcMap - this will be used for Raster Calc
 layerNamePrecipitationData = "Input\\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
