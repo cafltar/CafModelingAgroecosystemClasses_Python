@@ -64,11 +64,13 @@ layerNamePrecipitationData = "Input\\prism_utm800"
 layerNameAgIrrigatedBaseName = "AgIrrigated\\CDL_"
 layerNameAgIrrigatedSuffix = "_AgIrrigated"
 # Most recent year of CDL data to be analyzed, this is used to generate RasterCalculatorArgs.txt
-layerCurrentYear = 2017
+layerCurrentYear = 2019
 # Extension for output from Raster Calculator
 layerFileExtension = ".tif"
 
 historicYears = [
+    2019,
+    2018,
     2017,
     2016,
     2015,
@@ -76,10 +78,7 @@ historicYears = [
     2013,
     2012,
     2011,
-    2010,
-    2009,
-    2008,
-    2007]
+    2010]
 pixelValueAgIrrigatedLayer = 1
 pricipitationCutOff = 311
 pixelValueAlgorithmicIrrLayer = 1
