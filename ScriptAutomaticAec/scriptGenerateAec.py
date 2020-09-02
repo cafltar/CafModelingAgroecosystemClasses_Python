@@ -2,30 +2,35 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 
+import sys
+
 #import pandas as pd
 import os.path
 import glob
 
 # --- PARAMS AND SETUP ---------------------------------------------------------
 # Parameters
-_irrigatedPath = os.path.join("Working","CDL_2007-2017_Irrigated_AlgorithmicIrrigated.tif")
+_irrigatedPath = os.path.join("Working","CDL_2019_Irrigated_AlgorithmicIrrigated.tif")
 _workingDirName = "WorkingTemp"
 _resultDirName = "Results"
 tempFolderName = "temp"
 shouldSaveIntermediateLayers = True
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2018\Working\ArcGIS"
+arcpy.env.workspace = r"C:\Files\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 arcpy.env.snapRaster = arcpy.env.workspace + os.path.sep + _irrigatedPath
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
+arcpy.env.parallelProcessingFactor = "100%"
 #tmpFC = arcpy.CreateScratchNames(...., "in_memory") #from: https://geonet.esri.com/thread/89289
 
 _coordinateSystem = arcpy.SpatialReference("WGS 1984 UTM Zone 11N")
 
 years = [
+    2019,
+    2018,
     2017,
     2016,
     2015,
@@ -33,10 +38,7 @@ years = [
     2013,
     2012,
     2011,
-    2010,
-    2009,
-    2008,
-    2007]
+    2010]
 # //- PARAMS AND SETUP ---------------------------------------------------------
 
 
@@ -44,7 +46,7 @@ years = [
 # The following get<Category>() functions return a ESRI map algebra expression which is generated from another script found in ScriptRasterCalculator\scriptCreateArgumentsForRasterCalculator
 
 def getIrrigated(rasterIn):
-    return Con((rasterIn == 1) | (rasterIn == 2) | (rasterIn == 3) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 26) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 92) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 213) | (rasterIn == 214) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 229) | (rasterIn == 230) | (rasterIn == 231) | (rasterIn == 232) | (rasterIn == 233) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 238) | (rasterIn == 239) | (rasterIn == 240) | (rasterIn == 241) | (rasterIn == 243) | (rasterIn == 244) | (rasterIn == 245) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 248) | (rasterIn == 249) | (rasterIn == 254),14)
+    return Con((rasterIn == 1) | (rasterIn == 2) | (rasterIn == 3) | (rasterIn == 4) | (rasterIn == 5) | (rasterIn == 10) | (rasterIn == 11) | (rasterIn == 12) | (rasterIn == 13) | (rasterIn == 14) | (rasterIn == 26) | (rasterIn == 41) | (rasterIn == 43) | (rasterIn == 45) | (rasterIn == 46) | (rasterIn == 47) | (rasterIn == 48) | (rasterIn == 49) | (rasterIn == 50) | (rasterIn == 54) | (rasterIn == 56) | (rasterIn == 57) | (rasterIn == 60) | (rasterIn == 92) | (rasterIn == 206) | (rasterIn == 207) | (rasterIn == 208) | (rasterIn == 209) | (rasterIn == 213) | (rasterIn == 214) | (rasterIn == 215) | (rasterIn == 216) | (rasterIn == 219) | (rasterIn == 221) | (rasterIn == 222) | (rasterIn == 224) | (rasterIn == 225) | (rasterIn == 226) | (rasterIn == 227) | (rasterIn == 228) | (rasterIn == 229) | (rasterIn == 230) | (rasterIn == 231) | (rasterIn == 232) | (rasterIn == 233) | (rasterIn == 236) | (rasterIn == 237) | (rasterIn == 238) | (rasterIn == 239) | (rasterIn == 240) | (rasterIn == 241) | (rasterIn == 243) | (rasterIn == 244) | (rasterIn == 245) | (rasterIn == 246) | (rasterIn == 247) | (rasterIn == 248) | (rasterIn == 249) | (rasterIn == 254),14)
 
 def getAg(rasterIn):
     return Con((rasterIn == 6) | (rasterIn == 21) | (rasterIn == 22) | (rasterIn == 23) | (rasterIn == 24) | (rasterIn == 25) | (rasterIn == 27) | (rasterIn == 28) | (rasterIn == 29) | (rasterIn == 30) | (rasterIn == 31) | (rasterIn == 32) | (rasterIn == 33) | (rasterIn == 34) | (rasterIn == 35) | (rasterIn == 36) | (rasterIn == 37) | (rasterIn == 38) | (rasterIn == 39) | (rasterIn == 42) | (rasterIn == 44) | (rasterIn == 51) | (rasterIn == 52) | (rasterIn == 53) | (rasterIn == 58) | (rasterIn == 59) | (rasterIn == 61) | (rasterIn == 205) | (rasterIn == 234) | (rasterIn == 235),99)
@@ -73,6 +75,9 @@ def getRange(rasterIn):
 def getWilderness(rasterIn):
     return Con((rasterIn == 112),9)
 
+def getAgNoIrrigated(ag_raster, irrigated_raster):
+    return Con((ag_raster == 99) & (IsNull(irrigated_raster)),1)
+
 def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coordinateSystem):
     print("Starting year: "+str(currYear))
 
@@ -91,9 +96,26 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
     rasterAg=           getAg(rasterCdl) 
     rasterWilderness=   getWilderness(rasterCdl)   
 
+    if(shouldSaveIntermediateLayers == True):
+        print("... Saving intermediate layers")
+        rasterAg        .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Ag.tif")
+        rasterOrchard   .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Orchard.tif")
+        rasterForest    .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Forest.tif")
+        rasterWetland   .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Wetland.tif")
+        rasterWater     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Water.tif")
+        rasterUrban     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Urban.tif")
+        rasterBarren    .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Barren.tif")
+        rasterRange     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Range.tif")
+        rasterWilderness.save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Wilderness.tif")
+
     # Create AgNoIrrigated layer
     print("... Generating AgNoIrrigated layer")
-    rasterAgNoIrrigated=Con((rasterAg == 99) & (IsNull(rasterIrrMaster)),1)
+    #rasterAgNoIrrigated=Con((rasterAg == 99) & (IsNull(rasterIrrMaster)),1)
+    rasterAgNoIrrigated = getAgNoIrrigated(rasterAg, rasterIrrMaster)
+
+    if(shouldSaveIntermediateLayers == True):
+        print("Saving: " + arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_AgNoIrrigated.tif")
+        rasterAgNoIrrigated.save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_AgNoIrrigated.tif")
 
     # Create Dryland layer
     print("... Generating Dryland layer")
@@ -122,17 +144,6 @@ def createAecLayer(currYear, irrigatedPath, resultDirName, workingDirName, coord
 
     if(shouldSaveIntermediateLayers == True):
         print("... Saving intermediate layers")
-        rasterAg        .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Ag.tif")
-        rasterOrchard   .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Orchard.tif")
-        rasterForest    .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Forest.tif")
-        rasterWetland   .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Wetland.tif")
-        rasterWater     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Water.tif")
-        rasterUrban     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Urban.tif")
-        rasterBarren    .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Barren.tif")
-        rasterRange     .save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Range.tif")
-        rasterWilderness.save(arcpy.env.workspace + os.path.sep + workingDirName +  os.path.sep + "CDL_"+str(currYear)+ "_Wilderness.tif")
-
-        rasterAgNoIrrigated .save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_AgNoIrrigated.tif")
         rasterDryland       .save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_Dryland.tif")
         rasterDrylandFallow .save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_"+str(currYear)+"_DrylandFallow.tif")
         rasterFocalStatistic.save(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + str(currYear)+"_FocalStatistic.tif")
@@ -225,6 +236,8 @@ for year in years:
         createAecLayer(year, _irrigatedPath, _resultDirName, _workingDirName, _coordinateSystem)   
     except Exception as e:
         print(e)
+        sys.exit()
+
 
 # Finds all anthrome maps in Results directory and creates aggregate Anthrome
 try:
