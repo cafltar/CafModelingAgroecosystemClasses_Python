@@ -1,7 +1,8 @@
 import arcpy
+from arcpy import env
 from arcpy.sa import *
 
-import pandas as pd
+#import pandas as pd
 import os.path
 
 # Parameters
@@ -10,23 +11,23 @@ resultDirName = "Results"
 tempFolderName = "temp"
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\Drive\Files\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
+arcpy.env.workspace = r"G:\My Drive\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
-arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
+#arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
 
 years = [
-    2007,
-    2008,
-    2009,
     2010,
     2011,
     2012,
     2013,
     2014,
     2015,
-    2016]
+    2016,
+    2017,
+    2018,
+    2019]
 
 # Python snippit
 # Replace a layer/table view name with a path to a dataset (which can be a layer file) or create the layer/table view within the script
@@ -37,8 +38,8 @@ arcpy.CheckOutExtension("spatial")
 
 for i in range(len(years)):
     if(i < (len(years)-1)):
-        earlyYear = Raster(resultDirName + os.path.sep + "anthrome" + str(years[i]) + "n.tif")
-        laterYear = Raster(resultDirName + os.path.sep + "anthrome" + str(years[i+1]) + "n.tif")
+        earlyYear = Raster(resultDirName + os.path.sep + "aec" + str(years[i]) + ".tif")
+        laterYear = Raster(resultDirName + os.path.sep + "aec" + str(years[i+1]) + ".tif")
 
         try:
             arcpy.gp.TabulateArea_sa(

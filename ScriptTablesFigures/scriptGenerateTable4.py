@@ -12,23 +12,28 @@ resultDirName = "Results"
 tempFolderName = "temp"
 inputFolderName = "Input"
 
-arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
+arcpy.env.workspace = r"G:\My Drive\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
 
-pathToDouglasZones = os.path.join(arcpy.env.workspace, inputFolderName, "Dzones.shp")
-pathToEcoregions = os.path.join(arcpy.env.workspace, inputFolderName, "ecoregions.shp") 
-pathToMLRAs = os.path.join(arcpy.env.workspace, inputFolderName, "MLRAs.shp") 
+pathToDouglasZones = os.path.join(arcpy.env.workspace, inputFolderName, "Dzones", "Dzones.shp")
+pathToEcoregions = os.path.join(arcpy.env.workspace, inputFolderName, "ecoregions", "ecoregions.shp") 
+pathToMLRAs = os.path.join(arcpy.env.workspace, inputFolderName, "MLRAs", "MLRAs.shp") 
 
 # //- PARAMS AND SETUP ---------------------------------------------------------
 
 # --- FUNCTIONS ----------------------------------------------------------------
 # from: https://geonet.esri.com/thread/110894
 def TableToCSV(fc,CSVFile):  
-    fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    #fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    fields = []
+    for f in arcpy.ListFields(fc):
+        if f.type != 'Geometry':
+            fields.append(f.name)
+
     with open(CSVFile, 'w') as f:  
         f.write(','.join(fields)+'\n') #csv headers  
         with arcpy.da.SearchCursor(fc, fields) as cursor:  
@@ -52,7 +57,8 @@ def createMajorityRaster(
 
     # Get annual anthrome maps
     anthromePaths = glob.glob(
-        os.path.join(dirPathToAnthromeMaps, "anthrome*n.tif"))
+        #os.path.join(dirPathToAnthromeMaps, "anthrome*n.tif"))
+        os.path.join(dirPathToAnthromeMaps, "aec*.tif"))
     anthromes = []
 
     # Create rasters for each
@@ -122,8 +128,12 @@ def createCrossTabulatedDataAllAnthromes(
     pathToFeatureClassData, classField,
     dirPathToOutputDbf):
 
+    print("dirPathToAnthromeMaps: " + dirPathToAnthromeMaps)
+    print("pathToFeatureClassData: " + pathToFeatureClassData)
+    print("classField: " + classField)
+
     # Get annual anthrome maps
-    anthromePaths = glob.glob(os.path.join(dirPathToAnthromeMaps, "anthrome*n.tif"))
+    anthromePaths = glob.glob(os.path.join(dirPathToAnthromeMaps, "aec*.tif"))
 
     for p in anthromePaths:
         anthromeFilename = os.path.basename(p)
@@ -147,6 +157,7 @@ def createCrossTabulatedDataAllAnthromes(
 # --- MAIN ---------------------------------------------------------------------
 arcpy.CheckOutExtension("spatial")
 
+print("Creating DouglasZones cross tabulation...")
 try:
     createCrossTabulatedDataAllAnthromes(
         os.path.join(arcpy.env.workspace, resultDirName),

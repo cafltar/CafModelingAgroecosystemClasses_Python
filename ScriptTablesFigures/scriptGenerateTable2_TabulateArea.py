@@ -11,28 +11,32 @@ resultDirName = "Results"
 tempFolderName = "temp"
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\Drive\Files\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
+arcpy.env.workspace = r"G:\My Drive\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
 arcpy.CreateFolder_management(arcpy.env.workspace, tempFolderName)
 arcpy.env.scratchWorkspace = tempFolder
 
 years = [
-    2007,
-    2008,
-    2009,
     2010,
     2011,
     2012,
     2013,
     2014,
     2015,
-    2016]
+    2016,
+    2017,
+    2018,
+    2019]
 
 # from: https://geonet.esri.com/thread/110894
 def TableToCSV(fc,CSVFile):  
-      
-    fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    #fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    fields = []
+    for f in arcpy.ListFields(fc):
+        if f.type != 'Geometry':
+            fields.append(f.name)
+
     with open(CSVFile, 'w') as f:  
         f.write(','.join(fields)+'\n') #csv headers  
         with arcpy.da.SearchCursor(fc, fields) as cursor:  
@@ -43,7 +47,8 @@ def TableToCSV(fc,CSVFile):
 arcpy.CheckOutExtension("spatial")
 
 for i in range(len(years)):
-    aecRaster = Raster(resultDirName + os.path.sep + "anthrome" + str(years[i]) + "n.tif")
+    #aecRaster = Raster(resultDirName + os.path.sep + "anthrome" + str(years[i]) + "n.tif")
+    aecRaster = Raster(resultDirName + os.path.sep + "aec" + str(years[i]) + ".tif")
     cdlRaster = Raster(arcpy.env.workspace + os.path.sep + workingDirName + os.path.sep + "CDL_" + str(years[i]) + ".tif")
     dbfPath = resultDirName + os.path.sep + "Table2_" + str(years[i]) + ".dbf"
     csvPath = dbfPath[:-4]+".csv"

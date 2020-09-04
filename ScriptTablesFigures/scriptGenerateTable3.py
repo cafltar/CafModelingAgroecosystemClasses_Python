@@ -12,7 +12,7 @@ resultDirName = "Results"
 tempFolderName = "temp"
 inputFolderName = "Input"
 
-arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
+arcpy.env.workspace = r"G:\My Drive\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
@@ -29,7 +29,12 @@ pathToTemperatureLayer = os.path.join(arcpy.env.workspace, inputFolderName, "tem
 # --- FUNCTIONS ----------------------------------------------------------------
 # from: https://geonet.esri.com/thread/110894
 def TableToCSV(fc,CSVFile):  
-    fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    #fields = [f.name for f in arcpy.ListFields(fc) if f.type <> 'Geometry']  
+    fields = []
+    for f in arcpy.ListFields(fc):
+        if f.type != 'Geometry':
+            fields.append(f.name)
+
     with open(CSVFile, 'w') as f:  
         f.write(','.join(fields)+'\n') #csv headers  
         with arcpy.da.SearchCursor(fc, fields) as cursor:  
@@ -53,7 +58,7 @@ def createMajorityRaster(
 
     # Get annual anthrome maps
     anthromePaths = glob.glob(
-        os.path.join(dirPathToAnthromeMaps, "anthrome*n.tif"))
+        os.path.join(dirPathToAnthromeMaps, "aec*.tif"))
     anthromes = []
 
     # Create rasters for each
@@ -82,6 +87,12 @@ def createCrossTabulatedData(
     pathToFeatureClassData, classField, 
     pathToOutputDbf):
 
+    print("pathToZoneData: " + pathToZoneData)
+    print("zoneField: " + zoneField)
+    print("pathToFeatureClassData: " + pathToFeatureClassData)
+    print("classField: " + classField)
+    print("pathToOutputDbf: " + pathToOutputDbf)
+
     zoneRaster = Raster(pathToZoneData)
 
     # Check if the raster is int, if not, convert (+0.5 is to round)
@@ -89,6 +100,7 @@ def createCrossTabulatedData(
         zoneRaster = Int(zoneRaster + 0.5)
 
     # Create dbf file using tabulate area
+
     arcpy.gp.TabulateArea_sa(
             zoneRaster, zoneField,
             Raster(pathToFeatureClassData), classField,
@@ -152,6 +164,7 @@ print("Creating soil cross tab...")
 try:
     createCrossTabulatedData(
        pathToSoilsLayer, "SUBORDER",
+       #pathToSoilsLayer, "SOIL_ORDER",
        pathToMajorityAnthrome, "Value",
        #os.path.join(arcpy.env.workspace, resultDirName, "Table3_anthromeSoilTab.dbf"))
        os.path.join(resultDirName, "Table3_anthromeSoilTab.dbf"))

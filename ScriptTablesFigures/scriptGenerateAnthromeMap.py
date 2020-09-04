@@ -5,14 +5,14 @@ import os.path
 
 # --- PARAMS AND SETUP ---------------------------------------------------------
 # Parameters
-_irrigatedPath = os.path.join("Working","CDL_2016_Irrigated_AlgorithmicIrrigated.tif")
+_irrigatedPath = os.path.join("Working","CDL_2019_Irrigated_AlgorithmicIrrigated.tif")
 _workingDirName = "WorkingTemp"
 _resultDirName = "Results"
 tempFolderName = "temp"
 shouldSaveIntermediateLayers = False
 
 # Environment Parameters
-arcpy.env.workspace = r"C:\OneDrive - Washington State University (email.wsu.edu)\Projects\CafModelingAgroecosystemClasses\2017\Methods\GIS"
+arcpy.env.workspace = r"G:\My Drive\Projects\CafModelingAgroecologicalClasses\2020\Working\ArcGIS"
 arcpy.env.overwriteOutput = True
 arcpy.env.snapRaster = arcpy.env.workspace + os.path.sep + _irrigatedPath
 tempFolder = arcpy.env.workspace + os.path.sep + tempFolderName
@@ -22,16 +22,16 @@ arcpy.env.scratchWorkspace = tempFolder
 
 _coordinateSystem = arcpy.SpatialReference("WGS 1984 UTM Zone 11N")
 years = [
+    2019,
+    2018,
+    2017,
     2016,
     2015,
     2014,
     2013,
     2012,
     2011,
-    2010,
-    2009,
-    2008,
-    2007]
+    2010]
 # //- PARAMS AND SETUP ---------------------------------------------------------
 
 def createAnthromeMap(
